@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+</head>
+<body>
+    <nav class='navbar navbar-default navbar-static-top'>
+        <div class="container">
+            <div class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    <li><a class="navbar-brand" href="{% url 'index' %}">Index page</a></li>
+                    <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin page</a></li>
+                    <li><a class="navbar-link" href="{% url 'indexapp:signin' %}">Signin page</a></li>
+
+                    {% if user.is_authenticated %}
+                        <li><a class="navbar-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a class="Navbar-link" href="{% url 'indexapp:user_login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>   
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron">
+        {% block body %}
+        <h1>This is index page</h1>
+        {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
